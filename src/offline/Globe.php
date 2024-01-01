@@ -1,9 +1,9 @@
 <?php
 
-namespace globe;
+namespace offline;
 
 function ALoader(){
-    $d = __DIR__.'/../asset/';
+    $d = __DIR__ . '/../asset/';
     $classes = glob($d . '/*.php');
     foreach ($classes as $class) {
         require_once $class;
@@ -18,15 +18,15 @@ use Asset\Flag;
 use Asset\Code;
 use Asset\Currency;
 
-class Build{
-    public function countries(){return Country::countries();}
-    public function capitals(){return Capital::capitals();}
-    public function flags(){return Flag::flags();}
-    public function currencies(){return Currency::currencies();}
-    public function codes(){return Code::codes();}
-    public function languages(){return Language::languages();}
+class Globe{
+    private function countries(){return Country::countries();}
+    private function capitals(){return Capital::capitals();}
+    private function flags(){return Flag::flags();}
+    private function currencies(){return Currency::currencies();}
+    private function codes(){return Code::codes();}
+    private function languages(){return Language::languages();}
 
-    public function checkCountryName($country){
+    private function checkCountryName($country){
         if(is_string($country)){
             return str_replace(" ","_",trim(strtolower($country)));
         }
@@ -71,7 +71,7 @@ class Build{
     }
 
     // Flag section
-    public function getNameFlag($country){
+    private function getNameFlag($country){
         $countryName = $this->checkCountryName($country);
         $listFlags = $this->flags();
         if(array_key_exists($countryName,$listFlags)){

@@ -14,7 +14,7 @@
   "autoload": {
     "psr-4": {
       "asset\\": "src/asset/",
-      "globe\\": "src/globe/"
+      "offline\\": "src/offline/"
     }
   }
 }
