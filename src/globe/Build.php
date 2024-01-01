@@ -1,6 +1,6 @@
 <?php
 
-namespace infos;
+namespace globe;
 
 function ALoader(){
     $d = __DIR__.'/../asset/';
