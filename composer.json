@@ -3,7 +3,7 @@
   "description": "Offline country data for PHP. Over 200 countries, capitals, flags, languages, currencies. No internet needed.",
   "type": "library",
   "license": "GPL-3.0-only",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Ayoub Amzil",
@@ -14,7 +14,7 @@
   "autoload": {
     "psr-4": {
       "asset\\": "src/asset/",
-      "infos\\": "src/infos/"
+      "globe\\": "src/globe/"
     }
   }
 }
