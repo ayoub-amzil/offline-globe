@@ -78,27 +78,23 @@ class Globe{
             return $listFlags[$countryName];
         } else { return false; }
     }
-    public function getImgFlag($type,$country){
-        $basePath = dirname(__DIR__).'../../res/flags/';
+    public function getFlag($type,$country,$dir='flags'){
+        $venDirFlags = dirname(__DIR__).'../../res/flags/';
         $ty = trim(strtolower($type));
         if ($ty !== "png" && $ty !== "svg") {
             return "($type) Invalid image type. Please provide 'png' or 'svg'.";
         }
         if(!$this->getNameFlag($country)){
-            return "$country ins not a valid country!";
+            return "$country is not a valid country!";
         }
-        $imgPath = $basePath.$ty.'/'.$this->getNameFlag($country).'.'.$ty;
-        if (file_exists($imgPath)) {
-            if($ty=='png'){
-                header('Content-Type: image/png');
-                readfile($imgPath);
-            }else{
-                return file_get_contents($imgPath);
-            }
-        } else {
-            return 'Image path seems incorrect!';
+        $imgFlagPath = $venDirFlags.$ty.'/'.$this->getNameFlag($country).'.'.$ty;
+        $pubFlagDir = public_path($dir.'/');
+        if (!file_exists($pubFlagDir)) {
+            mkdir($pubFlagDir, 0755, true);
         }
-        return 'Something went wrong with the image!';
+        $pubFlagPath = $pubFlagDir.$this->getNameFlag($country).'.'.$ty;
+        copy($imgFlagPath,$pubFlagPath);
+        return $dir.'/'.$this->getNameFlag($country).'.'.$ty;
     }
 
     // Code section
