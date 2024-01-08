@@ -78,7 +78,7 @@ class Globe{
             return $listFlags[$countryName];
         } else { return false; }
     }
-    public function getFlag($type,$country,$dir='flags'){
+    public function getFlag($country,$type='svg',$dir='flags'){
         $venDirFlags = dirname(__DIR__).'../../res/flags/';
         $ty = trim(strtolower($type));
         if ($ty !== "png" && $ty !== "svg") {
