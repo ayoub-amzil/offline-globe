@@ -19,12 +19,12 @@ use Asset\Code;
 use Asset\Currency;
 
 class Globe{
-    private function countries(){return Country::countries();}
-    private function capitals(){return Capital::capitals();}
-    private function flags(){return Flag::flags();}
-    private function currencies(){return Currency::currencies();}
-    private function codes(){return Code::codes();}
-    private function languages(){return Language::languages();}
+    private function getCountries(){return Country::countries();}
+    private function getCapitals(){return Capital::capitals();}
+    private function getFlags(){return Flag::flags();}
+    private function getCurrencies(){return Currency::currencies();}
+    private function getCodes(){return Code::codes();}
+    private function getLanguages(){return Language::languages();}
 
     private function checkCountryName($country){
         if(is_string($country)){
@@ -34,37 +34,37 @@ class Globe{
     }
 
     // Country section
-    public function getCountries(){
+    public function Countries(){
         $c = [];
-        foreach ($this->countries() as $country){
+        foreach ($this->getCountries() as $country){
             array_push($c,ucfirst(str_replace("_"," ",$country)));
         }
         return $c;
     }
-    public function african(){
-        return array_slice($this->getCountries(),0,53);
+    public function African(){
+        return array_slice($this->Countries(),0,53);
     }
-    public function asia(){
-        return array_slice($this->getCountries(),53,49);
+    public function Asia(){
+        return array_slice($this->Countries(),53,49);
     }
-    public function europe(){
-        return array_slice($this->getCountries(),102,45);
+    public function Europe(){
+        return array_slice($this->Countries(),102,45);
     }
-    public function northAmerica(){
-        return array_slice($this->getCountries(),147,23);
+    public function NorthAmerica(){
+        return array_slice($this->Countries(),147,23);
     }
-    public function southAmerica(){
-        return array_slice($this->getCountries(),170,13);
+    public function SouthAmerica(){
+        return array_slice($this->Countries(),170,13);
     }
-    public function australia(){
-        return array_slice($this->getCountries(),183,14);
+    public function Australia(){
+        return array_slice($this->Countries(),183,14);
     }
 
 
     // Capital section
-    public function getCapital($country){
+    public function Capital($country){
         $countryName = $this->checkCountryName($country);
-        $listCapitals = $this->capitals();
+        $listCapitals = $this->getCapitals();
         if(array_key_exists($countryName,$listCapitals)){
             return str_replace("_"," ",$listCapitals[$countryName]);
         } else { return "Something went wrong with capital"; }
@@ -73,12 +73,12 @@ class Globe{
     // Flag section
     private function getNameFlag($country){
         $countryName = $this->checkCountryName($country);
-        $listFlags = $this->flags();
+        $listFlags = $this->getFlags();
         if(array_key_exists($countryName,$listFlags)){
             return $listFlags[$countryName];
         } else { return false; }
     }
-    public function getFlag($country,$type='svg',$dir='flags'){
+    public function Flag($country,$type='svg',$dir='flags'){
         $venDirFlags = dirname(__DIR__).'../../res/flags/';
         $ty = trim(strtolower($type));
         if ($ty !== "png" && $ty !== "svg") {
@@ -98,39 +98,36 @@ class Globe{
     }
 
     // Code section
-    public function getCode($country){
+    public function Code($country){
         $countryName = $this->checkCountryName($country);
-        $listCodes = $this->codes();
+        $listCodes = $this->getCodes();
         if(array_key_exists($countryName,$listCodes)){
             return $listCodes[$countryName];
         } else { return "Something went wrong with country code"; }
     }
 
     // Currency section
-    public function getCurrency($i,$country){
+    public function Currency($country,$i=''){
         $i = trim(strtolower($i));
         $countryName = $this->checkCountryName($country);
-        $listCurrency = $this->currencies();
+        $listCurrency = $this->getCurrencies();
         if(array_key_exists($countryName,$listCurrency)){
             if($i=='name' || $i=='code'){
                 return $listCurrency[$countryName][$i];
-            }elseif(empty($i) || $i=='' ){
+            }elseif(empty($i) || $i= ''){
                 return ['name'=>$listCurrency[$countryName]['name'],'code'=>$listCurrency[$countryName]['code']];
             }else{
-                return "($i) Invalid information type. Please provide 'code' or 'name'.";
+                return "($i) Invalid information type. Please provide 'code' or 'name', or leave it empty.";
             }
         } else { return "Something went wrong with currency"; }
     }
 
     // Language section
-    public function getLanguage($country){
+    public function Language($country){
         $countryName = $this->checkCountryName($country);
-        $listLanguage = $this->languages();
+        $listLanguage = $this->getLanguages();
         if(array_key_exists($countryName,$listLanguage)){
             return $listLanguage[$countryName];
         } else { return "Something went wrong with language"; }
     }
 }
-
-
-
