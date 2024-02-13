@@ -2,7 +2,7 @@
   "name": "ayoub-amzil/offline-globe",
   "description": "Offline country data for PHP. Over 200 countries, capitals, flags, languages, currencies. No internet needed.",
   "type": "library",
-  "license": "MIT"
+  "license": "MIT",
   "version": "1.1.2",
   "authors": [
     {
