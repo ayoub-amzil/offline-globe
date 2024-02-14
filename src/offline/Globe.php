@@ -30,7 +30,7 @@ class Globe{
         if(is_string($country)){
             return str_replace(" ","_",trim(strtolower($country)));
         }
-        return 'Something went wrong with the name!';
+        return 'Something went wrong! Please refer to the reference for the complete list of names available.';
     }
 
     // Country section
@@ -67,7 +67,7 @@ class Globe{
         $listCapitals = $this->getCapitals();
         if(array_key_exists($countryName,$listCapitals)){
             return str_replace("_"," ",$listCapitals[$countryName]);
-        } else { return "Something went wrong with capital"; }
+        } else { return "The capital you are looking for does not exist."; }
     }
 
     // Flag section
@@ -82,7 +82,7 @@ class Globe{
         $venDirFlags = dirname(__DIR__).'../../res/flags/';
         $ty = trim(strtolower($type));
         if ($ty !== "png" && $ty !== "svg") {
-            return "($type) Invalid image type. Please provide 'png' or 'svg'.";
+            return "($type) is an invalid image type. Please, provide 'png' or 'svg'.";
         }
         if(!$this->getNameFlag($country)){
             return "$country is not a valid country!";
@@ -103,7 +103,7 @@ class Globe{
         $listCodes = $this->getCodes();
         if(array_key_exists($countryName,$listCodes)){
             return $listCodes[$countryName];
-        } else { return "Something went wrong with country code"; }
+        } else { return "The code you are looking for does not exist."; }
     }
 
     // Currency section
@@ -117,9 +117,9 @@ class Globe{
             }elseif(empty($i) || $i= ''){
                 return ['name'=>$listCurrency[$countryName]['name'],'code'=>$listCurrency[$countryName]['code']];
             }else{
-                return "($i) Invalid information type. Please provide 'code' or 'name', or leave it empty.";
+                return "($i) is an invalid type of information. Please, provide 'code', 'name' or leave it empty.";
             }
-        } else { return "Something went wrong with currency"; }
+        } else { return "The currency you are looking for does not exist."; }
     }
 
     // Language section
