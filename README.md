@@ -2,7 +2,7 @@
 # __Offline Globe__
 
 Offline country data for PHP Laravel framework. Over 200 countries, capitals, flags, languages, currencies. No internet needed.
-
+This packages uses the 7 model continent, and this is a [Reference](https://github.com/ayoub-amzil/offline-globe/blob/main/countries.txt) for all the countries included.
 
 
 ## __Installation__
